@@ -1,17 +1,17 @@
 package example.domain.model;
 
 import example.base.CommonUtil;
-import example.domain.model.Article;
 
 import java.util.ArrayList;
 
-public class ArticleRepository {
+
+public class ArticleMemRepository implements Repository{
     ArrayList<Article> articleList = new ArrayList<>();
     CommonUtil commonUtil = new CommonUtil();
     int latestArticleId = 4;
     int latestCommentId = 1;
 
-    public ArticleRepository() {
+    public ArticleMemRepository() {
         makeTestData(); // 시작과 동시에 테스트 데이터 생성
     }
 
@@ -72,25 +72,25 @@ public class ArticleRepository {
         return article;
     }
 
-    public void saveComment(int articleId, String comment) {
-        Article article = findArticleById(articleId); // 게시물 번호로 해당 게시물을 찾음
-
-        if (article != null) {
-            int currentCommentId = latestCommentId++; // 현재 댓글 번호 저장
-
-            // 새로운 Article 객체 생성하여 댓글 내용과 댓글 번호, 게시물 번호 설정
-            Article commentArticle = new Article();
-            commentArticle.setComments(comment);
-            commentArticle.setCommentId(currentCommentId);
-
-            // 해당 게시물에 댓글 추가
-            String existingComments = article.getComments();
-            String updatedComments = existingComments != null ? existingComments + "\n" + comment : comment;
-            article.setComments(updatedComments );
-            article.setCommentId(currentCommentId);
-        } else {
-            System.out.println("게시물을 찾을 수 없습니다.");
-        }
-    }
+//    public void saveComment(int articleId, String comment) {
+//        Article article = findArticleById(articleId); // 게시물 번호로 해당 게시물을 찾음
+//
+//        if (article != null) {
+//            int currentCommentId = latestCommentId++; // 현재 댓글 번호 저장
+//
+//            // 새로운 Article 객체 생성하여 댓글 내용과 댓글 번호, 게시물 번호 설정
+//            Article commentArticle = new Article();
+//            commentArticle.setComments(comment);
+//            commentArticle.setCommentId(currentCommentId);
+//
+//            // 해당 게시물에 댓글 추가
+//            String existingComments = article.getComments();
+//            String updatedComments = existingComments != null ? existingComments + "\n" + comment : comment;
+//            article.setComments(updatedComments );
+//            article.setCommentId(currentCommentId);
+//        } else {
+//            System.out.println("게시물을 찾을 수 없습니다.");
+//        }
+//    }
 }
 

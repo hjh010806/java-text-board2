@@ -27,10 +27,8 @@ public class ArticleView {  // 뷰
         System.out.println("조회수 : " + article.getHit());
         System.out.println("===================");
     }
-    public void printDetailComment(Article article){
-        System.out.println("========댓글========");
-        System.out.print(article.getCommentId() + ". "  + "댓글 내용 : " + article.getComments() + "\n");
-    }
+
+
 
 
 

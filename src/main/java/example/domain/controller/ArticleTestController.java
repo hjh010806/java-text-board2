@@ -1,49 +1,135 @@
-package example.domain.controller;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import example.base.CommonUtil;
-import example.domain.model.Article;
-import example.domain.model.ArticleFileRepository;
-import example.domain.view.ArticleTestView;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-public class ArticleTestController {
-    CommonUtil commonUtil = new CommonUtil();
-    ArticleTestView articleTestView = new ArticleTestView();
-    ArticleFileRepository articleFileRepository = new ArticleFileRepository();
-
-    Scanner scan = commonUtil.getScanner();
-    int WRONG_VALUE = -1;
-
-
-    public void add() {
-
-        System.out.print("게시물 제목을 입력해주세요 : ");
-        String title = scan.nextLine();
-
-        System.out.print("게시물 내용을 입력해주세요 : ");
-        String body = scan.nextLine();
-
-        articleFileRepository.saveObjectToJsonFile(title, body);
-        System.out.println("게시물이 등록되었습니다.");
-
-    }
-    public void list() {
-
-        ArrayList<Article> articleList = articleFileRepository.findAll();
-        articleTestView.printTestList(articleList); // 전체 출력 -> 전체 저장소 넘기기
-    }
-    public Article findArticleById(int id) {
-
-        return articleFileRepository.findById(id);
-
-    }
-
-
-
-}
+//package example.domain.controller;
+//
+//import example.base.CommonUtil;
+//import example.domain.model.Article;
+//import example.domain.model.ArticleFileRepository;
+//import example.domain.view.ArticleTestView;
+//
+//import java.util.ArrayList;
+//import java.util.Scanner;
+//
+//public class ArticleTestController {
+//    CommonUtil commonUtil = new CommonUtil();
+//    ArticleTestView articleTestView = new ArticleTestView();
+//    ArticleFileRepository articleFileRepository = new ArticleFileRepository();
+//
+//    Scanner scan = commonUtil.getScanner();
+//    int WRONG_VALUE = -1;
+//
+//
+//    public void add() {
+//
+//        System.out.print("게시물 제목을 입력해주세요 : ");
+//        String title = scan.nextLine();
+//
+//        System.out.print("게시물 내용을 입력해주세요 : ");
+//        String body = scan.nextLine();
+//
+//        articleFileRepository.saveObjectToJsonFile(title, body);
+//        System.out.println("게시물이 등록되었습니다.");
+//
+//    }
+//    public void list() {
+//
+//        ArrayList<Article> articleList = articleFileRepository.findAll();
+//        articleTestView.printTestList(articleList); // 전체 출력 -> 전체 저장소 넘기기
+//    }
+//
+//    public void delete() {
+//
+//        System.out.print("삭제할 게시물 번호를 입력해주세요 : ");
+//
+//        int inputId = getParamAsInt(scan.nextLine(), WRONG_VALUE);
+//        if(inputId == WRONG_VALUE) {
+//            return;
+//        }
+//
+//        Article article = articleFileRepository.findById(inputId);
+//
+//        if (article == null) {
+//            System.out.println("없는 게시물입니다.");
+//            return;
+//        }
+//
+//        articleFileRepository.deleteArticle(article);
+//        System.out.printf("%d 게시물이 삭제되었습니다.\n", inputId);
+//    }
+//
+//    public void update() {
+//        System.out.print("수정할 게시물 번호를 입력해주세요 : ");
+//
+//        int inputId = getParamAsInt(scan.nextLine(), WRONG_VALUE);
+//        if(inputId == WRONG_VALUE) {
+//            return;
+//        }
+//
+//        Article article = articleFileRepository.findById(inputId);
+//
+//        if (article == null) {
+//            System.out.println("없는 게시물입니다.");
+//            return;
+//        }
+//
+//        System.out.print("새로운 제목을 입력해주세요 : ");
+//        String newTitle = scan.nextLine();
+//
+//        System.out.print("새로운 내용을 입력해주세요 : ");
+//        String newBody = scan.nextLine();
+//
+//        articleFileRepository.updateArticle(article, newTitle, newBody);
+//        System.out.printf("%d번 게시물이 수정되었습니다.\n", inputId);
+//    }
+//
+//
+//    public void detail() {
+//        System.out.print("상세보기 할 게시물 번호를 입력해주세요 : ");
+//
+//        int inputId = getParamAsInt(scan.nextLine(), WRONG_VALUE);
+//        if(inputId == WRONG_VALUE) {
+//            return;
+//        }
+//
+//        Article article = articleFileRepository.findById(inputId);
+//
+//        if (article == null) {
+//            System.out.println("없는 게시물입니다.");
+//            return;
+//        }
+//
+//        article.increaseHit();
+//        articleTestView.printArticleDetail(article);
+//    }
+//
+//    public void search() {
+//        // 검색어를 입력
+//        System.out.print("검색 키워드를 입력해주세요 :");
+//        String keyword = scan.nextLine();
+//        ArrayList<Article> searchedList = articleFileRepository.findArticleByKeyword(keyword);
+//
+//        articleTestView.printArticleList(searchedList);
+//    }
+//
+//
+//
+//
+//
+//
+//    public Article findArticleById(int id) {
+//
+//        return articleFileRepository.findById(id);
+//
+//    }
+//
+//    private int getParamAsInt(String param, int defaultValue) {
+//        try {
+//            return Integer.parseInt(param);
+//        } catch (NumberFormatException e) {
+//            System.out.println("숫자를 입력해주세요.");
+//            return defaultValue;
+//        }
+//    }
+//
+//
+//
+//
+//}

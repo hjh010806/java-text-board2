@@ -1,14 +1,11 @@
 package example.base;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import example.domain.controller.ArticleTestController;
-import example.domain.model.Article;
+import example.domain.controller.ArticleController;
+//import example.domain.controller.ArticleTestController;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class BoardApp {
-    ArticleTestController articleTestController = new ArticleTestController();
+    ArticleController articleController = new ArticleController();
     Scanner scan = new Scanner(System.in);
     public void run() {
 
@@ -22,12 +19,12 @@ public class BoardApp {
             }
 
             switch (cmd) {
-                case "add" -> articleTestController.add();
-                case "list" -> articleTestController.list();
-//                case "update" -> articleController.update();
-//                case "delete" -> articleController.delete();
-//                case "detail" -> articleController.detail();
-//                case "search" -> articleController.search();
+                case "add" -> articleController.add();
+                case "list" -> articleController.list();
+                case "update" -> articleController.update();
+                case "delete" -> articleController.delete();
+                case "detail" -> articleController.detail();
+                case "search" -> articleController.search();
                 default -> System.out.println("올바른 명령어가 아닙니다.");
             }
         }
